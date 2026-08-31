@@ -23,7 +23,12 @@ Ablauf
 
      python tools/benchmark_reranker.py fragen.json
      python tools/benchmark_reranker.py fragen.json --models BAAI/bge-reranker-v2-m3 \\
-         jinaai/jina-reranker-v2-base-multilingual --trust-remote-code
+         mixedbread-ai/mxbai-rerank-base-v2 --trust-remote-code
+
+   Lizenzen vorher pruefen: die Vorgabemodelle und die oben genannten sind
+   MIT bzw. Apache-2.0. jinaai/jina-reranker-v2-base-multilingual steht
+   dagegen unter CC-BY-NC-4.0 und ist damit auf Forschung und Evaluation
+   beschraenkt - im kommerziellen Betrieb scheidet es aus.
 
 Kennzahlen
 ----------

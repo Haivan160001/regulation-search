@@ -341,7 +341,11 @@ your language.*
 | GPU mit < 8 GB VRAM, jede Sprache | `BAAI/bge-reranker-base` | ~0,3 GB statt ~0,8 GB, dafür schwächer |
 
 <sub>ᵗ benötigt `REG_SEARCH_TRUST_REMOTE_CODE=1` (führt Modellcode von
-HuggingFace aus) und ggf. `pip install einops`.</sub>
+HuggingFace aus) und ggf. `pip install einops`.
+Alle hier empfohlenen Modelle stehen unter MIT oder Apache-2.0 und sind
+kommerziell nutzbar — anders als `jina-reranker-v2-base-multilingual`, das
+weiter unten nur im Messvergleich auftaucht (CC-BY-NC-4.0, siehe
+[Lizenzen der Abhängigkeiten](#lizenzen-der-abhängigkeiten)).</sub>
 
 ```bash
 # Modell wechseln (keine Neuindizierung nötig - der Reranker berührt den Index nicht)
@@ -375,19 +379,31 @@ Kandidatenpool je Frage sind die Top-20 der Vektorsuche. MRR = mittlerer
 Kehrwert des Rangs der korrekten Passage, Top-5 = Anteil Fragen mit korrekter
 Passage unter den ersten fünf.
 
-| Reranker                        | MRR de | Top-5 de | MRR en | Top-5 en | Spread de |
-| ------------------------------- | ------ | -------- | ------ | -------- | --------- |
-| *ohne* (nur bge-m3-Vektorsuche) | 0.697  | 100 %    | 0.742  | 91 %     | –         |
-| **BAAI/bge-reranker-large** (Default) | 0.788 | **100 %** | 0.833 | 100 % | 0.30 |
-| BAAI/bge-reranker-v2-m3         | 0.798  | 82 %     | 0.763  | 91 %     | 0.29      |
-| mixedbread-ai/mxbai-rerank-base-v2 ᵗ | 0.754 | 91 % | **0.886** | 100 % | **0.84** |
-| jinaai/jina-reranker-v2-base-multilingual ᵗ | 0.702 | 91 % | 0.758 | 100 % | 0.50 |
-| Alibaba-NLP/gte-multilingual-reranker-base ᵗ | 0.562 | 82 % | 0.753 | 100 % | 0.32 |
+| Reranker | Lizenz | MRR de | Top-5 de | MRR en | Top-5 en | Spread de |
+| --- | --- | --- | --- | --- | --- | --- |
+| *ohne* (nur bge-m3-Vektorsuche) | – | 0.697 | 100 % | 0.742 | 91 % | – |
+| **BAAI/bge-reranker-large** (Default) | MIT | 0.788 | **100 %** | 0.833 | 100 % | 0.30 |
+| BAAI/bge-reranker-v2-m3 | Apache-2.0 | 0.798 | 82 % | 0.763 | 91 % | 0.29 |
+| mixedbread-ai/mxbai-rerank-base-v2 ᵗ | Apache-2.0 | 0.754 | 91 % | **0.886** | 100 % | **0.84** |
+| jinaai/jina-reranker-v2-base-multilingual ᵗ | **CC-BY-NC-4.0** ⁿᶜ | 0.702 | 91 % | 0.758 | 100 % | 0.50 |
+| Alibaba-NLP/gte-multilingual-reranker-base ᵗ | Apache-2.0 | 0.562 | 82 % | 0.753 | 100 % | 0.32 |
+
+> ⚠️ **ⁿᶜ Nicht für kommerzielle Nutzung.** `jina-reranker-v2-base-multilingual`
+> steht unter **CC-BY-NC-4.0** und ist damit auf Forschung und Evaluation
+> beschränkt; für den kommerziellen Einsatz verweist Jina AI auf seine
+> kostenpflichtigen APIs. Die Zeile steht hier nur, weil das Modell mitgemessen
+> wurde — **als Empfehlung für den Betrieb in einer Homologationsabteilung
+> scheidet es aus.** Alle übrigen gemessenen Modelle sind MIT oder Apache-2.0
+> und kommerziell nutzbar.
+>
+> *Not for commercial use — the Jina model is CC-BY-NC-4.0 and listed for
+> comparison only.*
 
 <sub>ᵗ benötigt `trust_remote_code=True` (führt Modellcode von HuggingFace aus);
 `jina-reranker-v2` zusätzlich `pip install einops`.
 Stichprobe: 11 Fragen × 2 Sprachen an *einer* Regelung — Unterschiede von
-&lt; 0.05 MRR sind nicht aussagekräftig, Top-5-Differenzen entsprechen 1–2 Fragen.</sub>
+&lt; 0.05 MRR sind nicht aussagekräftig, Top-5-Differenzen entsprechen 1–2 Fragen.
+Lizenzen am 31.08.2026 gegen die Modellkarten auf HuggingFace geprüft.</sub>
 
 Ableitungen:
 
@@ -587,7 +603,9 @@ kennen:
 | Streamlit, ChromaDB, transformers, sentence-transformers | Apache-2.0 | |
 | LangChain-Pakete, `ollama`-Client | MIT | |
 | PyTorch, NumPy, python-docx | BSD / MIT | |
-| `BAAI/bge-m3`, `BAAI/bge-reranker-large` | MIT | Modellgewichte |
+| `BAAI/bge-m3`, `BAAI/bge-reranker-large`, `BAAI/bge-reranker-base` | MIT | Modellgewichte (Default-Kette) |
+| `BAAI/bge-reranker-v2-m3`, `mixedbread-ai/mxbai-rerank-base-v2`, `Alibaba-NLP/gte-multilingual-reranker-base` | Apache-2.0 | optionale Reranker, kommerziell nutzbar |
+| `jinaai/jina-reranker-v2-base-multilingual` | **CC-BY-NC-4.0** | **nur Forschung/Evaluation** — nicht kommerziell nutzbar, nur im Messvergleich erwähnt |
 | Qwen 2.5 (14B) | Apache-2.0 | Modellgewichte |
 | Llama 3.1 | Meta Llama 3.1 Community License | Modellgewichte |
 | DM Sans, Geist Mono | SIL OFL 1.1 | mitgeliefert, Lizenztext in [`static/fonts/OFL.txt`](static/fonts/OFL.txt) |
