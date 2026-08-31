@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 ![Runs offline](https://img.shields.io/badge/data-100%25%20local-success)
 
-![Reg-Search: Chat-Antwort mit den Fundstellen-Chips Annex, Absatz und Seite](assets/social-preview.png)
+![Reg-Search: eine beantwortete Frage mit ihren Fundstellen — Annex, Absatz und Seite](assets/social-preview.png)
 
 Reg-Search durchsucht UN/UNECE-Regelungen, GTRs und WP.29-Dokumente (PDF/DOCX)
 semantisch und beantwortet Fragen **mit exakten Fundstellen** — Paragraph, Annex
