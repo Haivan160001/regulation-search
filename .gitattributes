@@ -1,0 +1,8 @@
+# Einheitliche Zeilenenden im Repository (LF), unabhaengig vom Betriebssystem
+# des Beitragenden. Auschecken passiert weiterhin plattformueblich.
+* text=auto eol=lf
+
+# Binaerdateien nicht anfassen
+*.woff2 binary
+*.png   binary
+*.pdf   binary

@@ -1,0 +1,38 @@
+# =============================================================================
+# Reg-Search - Abhaengigkeiten / Dependencies
+# -----------------------------------------------------------------------------
+# WICHTIG: PyTorch zuerst mit passendem CUDA-Build installieren (siehe README).
+# Der Index muss zur GPU-Architektur passen:
+#   RTX 50xx (Blackwell) -> cu130 (mindestens cu128)
+#   RTX 40xx / 30xx      -> cu126
+#   aeltere Karten       -> cu124
+#   pip install torch --index-url https://download.pytorch.org/whl/cu130
+# Danach:
+#   pip install -r requirements.txt
+# =============================================================================
+
+# --- UI ---------------------------------------------------------------------
+streamlit>=1.39,<2.0
+
+# --- RAG-Orchestrierung (LangChain, modularer 0.3-Stack) --------------------
+langchain-core>=0.3.29,<0.4
+langchain-chroma>=0.1.4,<0.3
+langchain-huggingface>=0.1.2,<0.4
+langchain-text-splitters>=0.3.0,<0.4
+
+# --- Vektordatenbank --------------------------------------------------------
+chromadb>=0.5.20,<0.7
+
+# --- Embeddings & Reranking (BAAI/bge-m3, BAAI/bge-reranker-large) ----------
+sentence-transformers>=3.3.0,<6.0
+transformers>=4.45,<5.0
+huggingface-hub>=0.26,<1.0
+torch>=2.4
+numpy>=1.26
+
+# --- LLM-Runtime ------------------------------------------------------------
+ollama>=0.4.4,<1.0
+
+# --- Dokumenten-Parsing -----------------------------------------------------
+pymupdf>=1.24.10,<2.0
+python-docx>=1.1.2,<2.0

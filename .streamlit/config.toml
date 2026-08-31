@@ -1,0 +1,133 @@
+[server]
+maxUploadSize = 200
+fileWatcherType = "none"   # verhindert Reload-Loops durch torch/HF-Caches
+
+# Nur lokal erreichbar. Ohne diese Zeile lauscht Streamlit auf allen
+# Netzwerk-Interfaces - bei vertraulichen Regelungsentwuerfen unerwuenscht.
+# Fuer Zugriff aus dem LAN auskommentieren (dann ggf. Firewall beachten).
+address = "localhost"
+
+# Liefert ./static unter dem Pfad "app/static/" aus - noetig fuer die
+# mitgelieferten Schriften (siehe [[theme.fontFaces]] weiter unten).
+enableStaticServing = true
+
+[browser]
+gatherUsageStats = false
+
+
+# =========================================================================== #
+# Design
+# =========================================================================== #
+# Einstellungs-Dashboard im Dark Mode. Die Graustufen liegen eng beieinander;
+# getrennt wird ueber Rahmen, nicht ueber Fuellung:
+#
+#   Sidebar                 #131313
+#   Hauptflaeche + Karten   #212121   (Karten haben dieselbe Fuellung wie die
+#                                      Seite und nur einen Rahmen)
+#   Nav-Zeile aktiv         #303030
+#   Rahmen Karten/Linien    #3C3C3C
+#   Rahmen Eingaben         #595959
+#   Text                    #DCDCDC
+#   Text gedaempft          #AFAFAF
+#
+# Dazu genau eine Farbe im gesamten Layout: das Lime #72C616 fuer
+# Primaerbuttons, aktiven Reiter, Fokusrahmen und Fortschritt.
+[theme]
+base = "dark"
+
+primaryColor             = "#72C616"
+backgroundColor          = "#212121"
+secondaryBackgroundColor = "#2C2C2C"
+textColor                = "#DCDCDC"
+linkColor                = "#8AD82A"
+codeBackgroundColor      = "#1A1A1A"
+codeTextColor            = "#C9D6BC"
+borderColor              = "#3C3C3C"
+dataframeBorderColor     = "#3C3C3C"
+dataframeHeaderBackgroundColor = "#2C2C2C"
+
+showWidgetBorder  = true
+showSidebarBorder = true
+
+# Zurueckhaltende Radien: Eingaben und Buttons ~6 px, Karten ~8 px.
+# Keine Pillen.
+baseRadius   = "0.375rem"
+buttonRadius = "0.375rem"
+
+# Eine Schrift fuer die gesamte Oberflaeche, Geist Mono ausschliesslich fuer
+# Code, Pfade und Modellnamen.
+font        = "DM Sans, Segoe UI, system-ui, sans-serif"
+headingFont = "DM Sans, Segoe UI, system-ui, sans-serif"
+codeFont    = "Geist Mono, Cascadia Code, Consolas, monospace"
+
+# 16 px Basis (Streamlit-Standard); der groessere Seitentitel wird in ui.py
+# gesetzt, weil der Default dafuer zu klein ausfaellt.
+baseFontSize   = 16
+# 500 statt 400: gemessen hat DM Sans bei 400 nur 2 px Stammbreite auf 19 px
+# Versalhoehe, das wirkt auf dunklem Grund ausgezehrt. Die Textfarbe bleibt
+# #DCDCDC - der Kontrast ist mit 11.7:1 reichlich, es fehlte ausschliesslich
+# Strichstaerke.
+#
+# Auf dunklem Grund wirkt Text ohnehin duenner als auf hellem (Halation),
+# weshalb Dark-Mode-Systeme das Gewicht ueblicherweise anheben. DM Sans
+# ist ein Variable Font, 500 ist also ein echter Schnitt und kein
+# vom Browser simuliertes Fett.
+baseFontWeight = 500
+
+# Zurueckhaltende Ueberschriften: der Seitentitel liegt bei rund 20 px,
+# nicht bei den 44 px des Streamlit-Defaults.
+headingFontSizes   = ["1.5rem", "1.15rem", "1rem", "0.9375rem", "0.875rem", "0.8125rem"]
+headingFontWeights = [600, 600, 600, 600, 600, 600]
+
+# Statusfarben entsaettigt, damit sie neben dem Lime nicht konkurrieren.
+greenColor   = "#8AD82A"
+yellowColor  = "#E3B341"
+orangeColor  = "#E08B3C"
+redColor     = "#F2726F"
+blueColor    = "#8C9AAE"
+violetColor  = "#A99BC4"
+grayColor    = "#AFAFAF"
+
+chartCategoricalColors = [
+  "#72C616", "#8C9AAE", "#E3B341", "#A99BC4",
+  "#F2726F", "#4FC3A1", "#E08B3C", "#AFAFAF",
+]
+
+[theme.sidebar]
+backgroundColor          = "#131313"
+secondaryBackgroundColor = "#212121"
+borderColor              = "#2A2A2A"
+
+
+# --------------------------------------------------------------------------- #
+# Schriftdateien (SIL Open Font License, siehe static/fonts/README.md)
+# --------------------------------------------------------------------------- #
+# Variable Fonts: eine Datei deckt den gesamten Gewichtsbereich ab.
+# latin-ext wird vom Browser nur bei Bedarf nachgeladen.
+[[theme.fontFaces]]
+family = "DM Sans"
+url = "app/static/fonts/dm-sans-latin.woff2"
+weight = "100 1000"
+style = "normal"
+unicodeRange = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+
+[[theme.fontFaces]]
+family = "DM Sans"
+url = "app/static/fonts/dm-sans-latin-ext.woff2"
+weight = "100 1000"
+style = "normal"
+unicodeRange = "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"
+
+[[theme.fontFaces]]
+family = "Geist Mono"
+url = "app/static/fonts/geist-mono-latin.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD"
+
+[[theme.fontFaces]]
+family = "Geist Mono"
+url = "app/static/fonts/geist-mono-latin-ext.woff2"
+weight = "100 900"
+style = "normal"
+unicodeRange = "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF"

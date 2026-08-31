@@ -1,0 +1,53 @@
+# --- Reg-Search ---
+chroma_db/
+data/uploads/*
+!data/uploads/.gitkeep
+*.log
+
+# --- Nicht ins oeffentliche Repo -------------------------------------------
+# Arbeitsnotizen, Referenzbilder, Demofilm und dessen Werkzeuge. Das Repo
+# enthaelt den lauffaehigen Stand, nicht seine Entstehung.
+docs/
+
+# Medien- und Aufnahme-Artefakte, unabhaengig vom Ablageort
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.srt
+*.vtt
+
+# Regelungsdokumente nie versehentlich einchecken (UNECE-PDFs, Entwuerfe).
+# Die mitgelieferten Schriften sind davon nicht betroffen.
+*.pdf
+*.docx
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Modelle / Caches ---
+.cache/
+models/
+*.gguf
+
+# --- Umgebung ---
+.env
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
